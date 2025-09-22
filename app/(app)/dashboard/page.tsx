@@ -12,7 +12,7 @@ export default async function DashboardRedirectPage() {
   if (!dbUser.role) redirect("/select-role");
 
   if (dbUser.role === "customer") redirect("/dashboard/c_dashboard");
-  if (dbUser.role === "seller") redirect("/dashboard/s_dashboard");
+  if (dbUser.role === "seller") redirect("/dashboard/s_dashboard/viewproduct");
   if (dbUser.role === "admin") redirect("/dashboard/a_dashboard");
 
   return (

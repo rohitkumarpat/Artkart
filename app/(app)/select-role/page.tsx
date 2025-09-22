@@ -34,7 +34,7 @@ export default function RoleSelectionPage() {
     if (role == 'customer') {
       router.push('/dashboard/c_dashboard');
     } else if (role == 'seller') {
-      router.push('/dashboard/s_dashboard');
+      router.push('/dashboard/s_dashboard/viewproduct');
     }
   }
 
