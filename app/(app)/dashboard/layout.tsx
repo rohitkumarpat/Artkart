@@ -72,7 +72,7 @@ export default async function RootLayout({
                   <nav className="flex gap-4">
                     <Link href="/dashboard/c_dashboard">
                       <span className="bg-purple-500 text-white px-3 py-1 rounded-full cursor-pointer hover:bg-purple-600">
-                        Customer Home
+                         Home
                       </span>
                     </Link>
                   </nav>
