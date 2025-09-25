@@ -56,12 +56,12 @@ export default async function RootLayout({
                 {role === "seller" && (
                   <nav className="flex gap-4">
                     <Link href="/dashboard/s_dashboard/viewproduct">
-                      <span className="bg-blue-500 text-white px-3 py-1 rounded-full cursor-pointer hover:bg-blue-600">
+                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
                         Home
                       </span>
                     </Link>
                     <Link href="/dashboard/s_dashboard">
-                      <span className="bg-green-500 text-white px-3 py-1 rounded-full cursor-pointer hover:bg-green-600">
+                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
                         Sell Product
                       </span>
                     </Link>
@@ -69,10 +69,22 @@ export default async function RootLayout({
                 )}
 
                 {role === "customer" && (
-                  <nav className="flex gap-4">
+                  <nav className="flex gap-8">
                     <Link href="/dashboard/c_dashboard">
-                      <span className="bg-purple-500 text-white px-3 py-1 rounded-full cursor-pointer hover:bg-purple-600">
+                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
                          Home
+                      </span>
+                    </Link>
+
+                    <Link href="/dashboard/c_dashboard/my_cart">
+                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                         Mycart
+                      </span>
+                    </Link>
+
+                    <Link href="/dashboard/c_dashboard/order">
+                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                         Order
                       </span>
                     </Link>
                   </nav>

@@ -1,5 +1,6 @@
 import { prismaclient } from "@/lib/db";
 import { currentUser } from "@clerk/nextjs/server";
+import { User } from "lucide-react";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -38,10 +39,15 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req:Request) {
+   const user=await currentUser();
+   if(!user) {
+    return NextResponse.json({msg:"Not Signed In"},{status:411});
+   }
+
   const products = await prismaclient.product.findMany({
     where: {
-      user: {
-        role: "seller",
+       user: {
+        clerkId: user.id
       },
     },
     include: {
