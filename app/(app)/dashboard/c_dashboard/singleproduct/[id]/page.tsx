@@ -40,7 +40,9 @@ export default function Singleproduct () {
 
 
  
-     if (loading) return <p className="text-white">Loading product...</p>;  
+     if (loading) return <div className="flex justify-center items-center mt-20 text-white text-lg font-semibold">
+        Loading product...
+      </div> 
        if (!product) return <p className="text-white">Product not found</p>;
    
     return (
@@ -62,6 +64,22 @@ export default function Singleproduct () {
       <p className="mt-2 text-sm text-muted-foreground">
         Seller: {product.user.username} ({product.user.email})
       </p>
+
+
+       <div className="mt-6 flex gap-4">
+        <button
+          
+          className="px-5 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-black font-semibold shadow-md transition"
+        >
+          🛒 Add to Cart
+        </button>
+        <button
+       
+          className="px-5 py-2 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold shadow-md transition"
+        >
+          📦 Order Now
+        </button>
+      </div>
     </div>
     )
 }
