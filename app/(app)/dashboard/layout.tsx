@@ -11,6 +11,7 @@ import {
 import { currentUser } from "@clerk/nextjs/server";
 import { prismaclient } from "@/lib/db";
 import Link from "next/link";
+import { Home, ShoppingCart, Package } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,48 +44,57 @@ export default async function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className="dark">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <header className="flex justify-between items-center w-full px-6 h-16 border-b">   
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <header className="flex justify-between items-center w-full px-6 h-16 border-b">
             <SignedOut>
+              <div className="flex gap-4">
                 <SignInButton />
-                <SignUpButton>
-                </SignUpButton>
+                <SignUpButton />
+              </div>
             </SignedOut>
 
             <SignedIn>
               <div className="flex-1 flex justify-center">
+                {/* Seller Navigation */}
                 {role === "seller" && (
-                  <nav className="flex gap-4">
+                  <nav className="flex gap-6">
                     <Link href="/dashboard/s_dashboard/viewproduct">
-                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        <Home size={18} />
                         Home
                       </span>
                     </Link>
                     <Link href="/dashboard/s_dashboard">
-                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
-                        Sell Product
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        ➕ Sell Product
                       </span>
                     </Link>
                   </nav>
                 )}
 
+                {/* Customer Navigation */}
                 {role === "customer" && (
-                  <nav className="flex gap-8">
+                  <nav className="flex gap-6">
                     <Link href="/dashboard/c_dashboard">
-                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
-                         Home
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        <Home size={18} />
+                        Home
                       </span>
                     </Link>
 
                     <Link href="/dashboard/c_dashboard/my_cart">
-                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
-                         Mycart
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        <ShoppingCart size={18} />
+                        My Cart
                       </span>
                     </Link>
 
                     <Link href="/dashboard/c_dashboard/order">
-                      <span className="px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
-                         Order
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        <Package size={18} />
+                        Orders
                       </span>
                     </Link>
                   </nav>
@@ -101,7 +111,9 @@ export default async function RootLayout({
           <main>{children}</main>
 
           {/* Footer */}
-          <footer></footer>
+          <footer className="text-center text-xs text-gray-400 py-4">
+            © {new Date().getFullYear()} ArtKart. All rights reserved.
+          </footer>
         </body>
       </html>
     </ClerkProvider>
