@@ -38,12 +38,16 @@ export default function Singleproduct () {
 
    },[params.id])
 
-
+     
  
      if (loading) return <div className="flex justify-center items-center mt-20 text-white text-lg font-semibold">
         Loading product...
       </div> 
        if (!product) return <p className="text-white">Product not found</p>;
+
+       const handlecart= async ()=>{
+          
+       }
    
     return (
        <div className="max-w-3xl mx-auto mt-10 p-6 bg-background rounded-lg border border-border text-white">
@@ -68,7 +72,7 @@ export default function Singleproduct () {
 
        <div className="mt-6 flex gap-4">
         <button
-          
+          onClick={handlecart}
           className="px-5 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-black font-semibold shadow-md transition"
         >
           🛒 Add to Cart
