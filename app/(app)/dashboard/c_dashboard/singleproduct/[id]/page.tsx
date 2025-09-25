@@ -12,46 +12,61 @@ interface Product {
   imageUrl: string;
   price: number;
   discount: string;
+  addtocart: boolean; 
   createdAt: string;
   user: { username: string; email: string };
 }
 
-
-
-export default function Singleproduct () {
-     const [product, setProduct] = useState<Product | null>(null);
+export default function Singleproduct() {
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
-   const params=useParams();
+  const [adding, setAdding] = useState(false);
+  const params = useParams();
 
-   useEffect(()=>{
-
-     async function fetchProduct() {
+  useEffect(() => {
+    async function fetchProduct() {
       try {
         const res = await axios.get(`/api/singleproduct/${params.id}`);
         setProduct(res.data);
-        setLoading(false);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     }
+
     fetchProduct();
+  }, [params.id]);
+  
 
-   },[params.id])
+  const handleCart = async () => {
+    if (!product || product.addtocart) return;
 
-     
- 
-     if (loading) return <div className="flex justify-center items-center mt-20 text-white text-lg font-semibold">
-        Loading product...
-      </div> 
-       if (!product) return <p className="text-white">Product not found</p>;
+    setAdding(true);
+    try {
+      await axios.post("/api/my-cart", { productid: product.id });
+      setProduct({ ...product, addtocart: true });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setAdding(false);
+    }
+  };
 
-       const handlecart= async ()=>{
-          
-       }
-   
+  if (loading)
     return (
-       <div className="max-w-3xl mx-auto mt-10 p-6 bg-background rounded-lg border border-border text-white">
+      <div className="flex justify-center items-center mt-20 text-white text-lg font-semibold">
+        Loading product...
+      </div>
+    );
+
+  if (!product)
+    return <p className="text-white mt-20 text-center">Product not found</p>;
+
+  return (
+    <div className="max-w-3xl mx-auto mt-10 p-6 bg-background rounded-lg border border-border text-white">
       <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
+
       {product.imageUrl && (
         <CldImage
           src={product.imageUrl}
@@ -61,6 +76,7 @@ export default function Singleproduct () {
           className="rounded mb-4"
         />
       )}
+
       <p className="mb-2">{product.description}</p>
       <p className="font-semibold text-primary">
         Price: ₹{product.price} {product.discount && `(Discount: ${product.discount}%)`}
@@ -69,21 +85,23 @@ export default function Singleproduct () {
         Seller: {product.user.username} ({product.user.email})
       </p>
 
-
-       <div className="mt-6 flex gap-4">
+      <div className="mt-6 flex gap-4">
         <button
-          onClick={handlecart}
-          className="px-5 py-2 rounded-xl bg-yellow-500 hover:bg-yellow-600 text-black font-semibold shadow-md transition"
+          onClick={handleCart}
+          disabled={adding || product.addtocart}
+          className={`px-5 py-2 rounded-xl font-semibold shadow-md transition ${
+            product.addtocart
+              ? "bg-green-600 text-white cursor-not-allowed"
+              : "bg-yellow-500 text-black hover:bg-yellow-600"
+          }`}
         >
-          🛒 Add to Cart
+          {adding ? "Adding..." : product.addtocart ? "Added to Cart ✅" : "🛒 Add to Cart"}
         </button>
-        <button
-       
-          className="px-5 py-2 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold shadow-md transition"
-        >
+
+        <button className="px-5 py-2 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold shadow-md transition">
           📦 Order Now
         </button>
       </div>
     </div>
-    )
+  );
 }

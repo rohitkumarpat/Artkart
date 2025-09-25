@@ -16,6 +16,7 @@ export async function GET(
         price: true,
         discount: true,
         createdAt: true,
+        addtocart:true,
         user: {
           select: {
             id: true,
