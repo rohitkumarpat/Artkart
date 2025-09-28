@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ msg: "Only customers can create orders" }, { status: 403 });
   }
 
-  const { city, state, pincode, productId, quantity } = await req.json();
+  const { city, state, pincode, productId, quantity,name,phonenumber } = await req.json();
 
   
   const product = await prismaclient.product.findUnique({ where: { id: productId } });
@@ -34,6 +34,8 @@ export async function POST(req: Request) {
   const order = await prismaclient.order.create({
     data: {
       userId: dbUser.id,
+       name,
+      phonenumber,
       productId,
       quantity,
       price: totalPrice,

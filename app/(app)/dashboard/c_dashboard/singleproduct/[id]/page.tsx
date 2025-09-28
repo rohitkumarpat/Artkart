@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { CldImage } from "next-cloudinary";
 import { useParams } from "next/navigation";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import OrderPage from "../../order_page/[id]/page";
 
 interface Product {
   id: string;
@@ -18,6 +20,7 @@ interface Product {
 }
 
 export default function Singleproduct() {
+   const router=useRouter();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [adding, setAdding] = useState(false);
@@ -37,7 +40,7 @@ export default function Singleproduct() {
 
     fetchProduct();
   }, [params.id]);
-  
+
 
   const handleCart = async () => {
     if (!product || product.addtocart) return;
@@ -52,6 +55,10 @@ export default function Singleproduct() {
       setAdding(false);
     }
   };
+
+  const handleorder=()=>{
+    router.push(`/dashboard/c_dashboard/order_page/${product?.id}`);
+  }
 
   if (loading)
     return (
@@ -98,7 +105,9 @@ export default function Singleproduct() {
           {adding ? "Adding..." : product.addtocart ? "Added to Cart ✅" : "🛒 Add to Cart"}
         </button>
 
-        <button className="px-5 py-2 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold shadow-md transition">
+        <button 
+         onClick={handleorder}
+        className="px-5 py-2 rounded-xl bg-green-500 hover:bg-green-600 text-white font-semibold shadow-md transition">
           📦 Order Now
         </button>
       </div>
