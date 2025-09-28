@@ -47,7 +47,7 @@ export default function Singleproduct() {
 
     setAdding(true);
     try {
-      await axios.post("/api/my-cart", { productid: product.id });
+      await axios.post("/api/my-cart", { productid: product.id,flag:true });
       setProduct({ ...product, addtocart: true });
     } catch (err) {
       console.error(err);

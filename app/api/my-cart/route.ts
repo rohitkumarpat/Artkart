@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 export async function POST(req:Request) {
 
     try {
-    const {productid}=await req.json(); 
+    const {productid,flag}=await req.json(); 
      const product = await prismaclient.product.update({
       where: { id: productid },
-      data: { addtocart: true },
+      data: { addtocart: flag },
     });
 
     return NextResponse.json({ success: true, product });
