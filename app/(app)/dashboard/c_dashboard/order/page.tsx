@@ -17,7 +17,7 @@ interface Order {
   id: string;
   quantity: number;
   createdAt: string;
-  status: string; // optional: for badges
+  status: "deliver" | "pending" | "cancelled"; 
   product: Product;
 }
 
@@ -44,6 +44,19 @@ export default function Order() {
   const view = (id: string) => {
     router.push(`/dashboard/c_dashboard/singleproduct/${id}`);
   }
+
+  const getStatusBadge = (status: Order["status"]) => {
+    switch (status) {
+      case "deliver":
+        return "bg-green-600 text-white";
+      case "pending":
+        return "bg-yellow-500 text-white";
+      case "cancelled":
+        return "bg-red-600 text-white";
+      default:
+        return "bg-gray-500 text-white";
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 p-6">
@@ -73,30 +86,31 @@ export default function Order() {
                   />
                 </div>
 
-                {/* Order Details */}
-                <div className="flex-1 p-4 md:p-6 grid gap-2">
-                  <CardTitle className="text-xl font-semibold text-gray-100">
-                    {order.product.title}
-                  </CardTitle>
+            
+         <div className="flex-1 p-4 md:p-6 flex flex-col gap-2">
+             <CardTitle className="text-xl font-semibold text-gray-100">
+                      {order.product.title}
+                 </CardTitle>
                   <p className="text-gray-200">
-                    <span className="font-medium">Quantity:</span> {order.quantity}
-                  </p>
-                  <p className="text-gray-200">
-                    <span className="font-medium">Total Price:</span> ₹{order.product.price * order.quantity}
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    Ordered on: {new Date(order.createdAt).toLocaleString()}
-                  </p>
-                  {order.status && (
-                    <span className={`inline-block mt-2 px-3 py-1 text-sm font-medium rounded ${
-                      order.status === "Delivered" ? "bg-green-600 text-white" :
-                      order.status === "Pending" ? "bg-yellow-500 text-white" :
-                      "bg-red-600 text-white"
-                    }`}>
-                      {order.status}
-                    </span>
-                  )}
-                </div>
+                   <span className="font-medium">Quantity:</span> {order.quantity}
+                          </p>
+                           <p className="text-gray-200">
+                          <span className="font-medium">Total Price:</span> ₹{order.product.price * order.quantity}
+                       </p>
+                      <p className="text-sm text-gray-400">
+                     Ordered on: {new Date(order.createdAt).toLocaleString()}
+                            </p>
+
+
+                        {order.status && (
+                         <div className="mt-3">
+      <span className={`inline-block px-3 py-1 text-sm font-medium rounded ${getStatusBadge(order.status)}`}>
+         {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+      </span>
+    </div>
+                        )}
+                          </div>
+
               </div>
             </Card>
           ))}

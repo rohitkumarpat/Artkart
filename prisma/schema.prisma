@@ -54,10 +54,15 @@ model Order {
 
   quantity  Int
   price     Int   
-
+  status   check?   @default(pending)
   city      String
   state     String
   pincode   Int
   createdAt DateTime @default(now())
 }
 
+
+enum check{
+  pending
+  deliver
+}
