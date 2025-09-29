@@ -63,7 +63,7 @@ export default function Mycart() {
       {products.map((product, index) => (
         <div
           key={index}
-          className="p-4 bg-background rounded-lg border border-border shadow hover:shadow-lg transition-shadow duration-300"
+          className="p-4  bg-gradient-to-b from-gray-900 to-black rounded-lg border border-border shadow hover:shadow-lg transition-shadow duration-300"
         >
           <div className="flex flex-col items-center">
             {/* Title and Delete icon on same line */}

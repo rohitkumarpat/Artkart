@@ -39,7 +39,7 @@ export default function View() {
       {products.map((product, index) => (
         <div
           key={index}
-          className="p-4 bg-background rounded-lg border border-border shadow hover:shadow-lg transition-shadow duration-300"
+          className="p-4  bg-gradient-to-b from-gray-900 to-black rounded-lg border border-border shadow hover:shadow-lg transition-shadow duration-300"
         >
           <h4 className="text-sm font-medium text-muted-foreground mb-3">
             Preview:

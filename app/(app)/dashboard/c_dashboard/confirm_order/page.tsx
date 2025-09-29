@@ -17,7 +17,7 @@ export default function ConfirmOrderPage() {
   }, []);
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background">
+    <main className="flex min-h-screen items-center justify-center  bg-gradient-to-b from-gray-900 to-black">
       {status === "loading" ? (
         <div className="flex flex-col items-center justify-center bg-green-500 text-white rounded-xl p-8 shadow-lg animate-pulse">
           <h2 className="text-3xl font-bold mb-2">Processing Your Order...</h2>

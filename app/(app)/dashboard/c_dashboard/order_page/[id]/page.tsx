@@ -23,7 +23,7 @@ export default function OrderPage() {
   }, [params.id]);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-background text-foreground">
+    <main className="flex min-h-screen flex-col items-center justify-center p-24  bg-gradient-to-b from-gray-900 to-black text-foreground">
      
       <div className="z-10 w-full flex justify-center font-mono text-sm mb-8">
         <h1 className="text-4xl font-bold text-balance text-center">

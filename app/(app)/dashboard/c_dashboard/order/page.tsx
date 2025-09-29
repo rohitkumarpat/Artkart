@@ -59,7 +59,7 @@ export default function Order() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 p-6">
+    <div className="min-h-screen  bg-gradient-to-b from-gray-900 to-black p-6">
       <h1 className="text-3xl font-bold text-center mb-8 text-gray-100">Your Orders</h1>
 
       {loading ? (

@@ -13,7 +13,7 @@ interface OrderFormProps {
 
 export default function OrderForm({ price }: OrderFormProps) {
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phonenumber, setPhoneNumber] = useState("");
   const [quantity, setQuantity] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
@@ -35,7 +35,7 @@ export default function OrderForm({ price }: OrderFormProps) {
     try {
       await axios.post("/api/order", {
         name,
-        phoneNumber,
+        phonenumber,
         quantity: parseInt(quantity),
         city,
         state,
@@ -83,7 +83,7 @@ export default function OrderForm({ price }: OrderFormProps) {
               id="phoneNumber"
               type="tel"
               placeholder="Enter your phone number"
-              value={phoneNumber}
+              value={phonenumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
               className="bg-gray-800 text-gray-100 border-gray-700 placeholder-gray-500"

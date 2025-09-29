@@ -71,7 +71,7 @@ export default function Singleproduct() {
     return <p className="text-white mt-20 text-center">Product not found</p>;
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 bg-background rounded-lg border border-border text-white">
+    <div className="max-w-3xl mx-auto mt-10 p-6  bg-gradient-to-b from-gray-900 to-black rounded-lg border border-border text-white">
       <h1 className="text-2xl font-bold mb-4">{product.title}</h1>
 
       {product.imageUrl && (

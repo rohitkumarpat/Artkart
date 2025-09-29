@@ -103,7 +103,7 @@ export default function ArtKartSellerPage() {
   const discountedPrice = price * (1 - discount / 100)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen  bg-gradient-to-b from-gray-900 to-black">
       {/* Header */}
       <div className="relative overflow-hidden py-20 px-4">
         <div className="container mx-auto text-center">
