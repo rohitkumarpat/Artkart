@@ -11,7 +11,7 @@ import {
 import { currentUser } from "@clerk/nextjs/server";
 import { prismaclient } from "@/lib/db";
 import Link from "next/link";
-import { Home, ShoppingCart, Package, Info } from "lucide-react";
+import { Home, ShoppingCart, Package, Info, HelpCircle } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -71,6 +71,21 @@ export default async function RootLayout({
                         ➕ Sell Product
                       </span>
                     </Link>
+
+                     <Link href="/dashboard/help">
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        <HelpCircle size={18} />
+                        Chat with us
+                      </span>
+                    </Link>
+
+                     <Link href="/dashboard/about">
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        <Info size={18} />
+                        About
+                      </span>
+                    </Link>
+
                   </nav>
                 )}
 
@@ -95,6 +110,13 @@ export default async function RootLayout({
                       <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
                         <Package size={18} />
                         Orders
+                      </span>
+                    </Link>
+
+                     <Link href="/dashboard/help">
+                      <span className="flex items-center gap-2 px-5 py-2 rounded-lg bg-white/10 text-white font-semibold shadow-md backdrop-blur-sm hover:bg-white/30 hover:scale-105 transition transform duration-300">
+                        <HelpCircle size={18} />
+                        Chat with us
                       </span>
                     </Link>
 

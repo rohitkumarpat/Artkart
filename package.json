@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.32.0",
+    "@google/genai": "^1.21.0",
+    "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.16.1",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
