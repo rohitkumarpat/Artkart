@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
+import Image from 'next/image';
 import {
   Palette,
   ArrowRight,
@@ -258,7 +259,7 @@ export default function HomePage() {
                 >
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden rounded-t-lg">
-                      <img
+                      <Image
                         src={artwork.image || "/placeholder.svg"}
                         alt={artwork.title}
                         className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"

@@ -18,10 +18,10 @@ export async function POST(req: Request) {
 
   return NextResponse.json({ success: true });
 
-}catch (err: any) {
-    console.error("❌ Error in set-role API:", err);
+}catch (error) {
+    console.error("❌ Error in set-role API:", error);
     return NextResponse.json(
-      { error: "Internal server error", detail: err.message },
+      { error: "Internal server error", detail: error },
       { status: 500 }
     );
 }
