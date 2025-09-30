@@ -262,6 +262,8 @@ export default function HomePage() {
                       <Image
                         src={artwork.image || "/placeholder.svg"}
                         alt={artwork.title}
+                         width={500}  // Add this
+                         height={300}
                         className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       {artwork.discount > 0 && (
